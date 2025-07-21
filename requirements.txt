@@ -1,0 +1,13 @@
+# Meta Data Extraction
+langgraph==0.5.1
+arxiv==2.2.0
+Bio==1.8.0
+chemrxiv==0.1.2
+ipython== 7.34.0
+
+# MCP Server
+fastmcp==2.10.5
+
+# MCP Server Security
+fastapi==0.116.1
+fastapi-responses==0.2.1
