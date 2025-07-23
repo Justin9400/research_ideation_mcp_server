@@ -41,14 +41,9 @@ def search_chemrxiv(search_query: str, max_retrievals: int):
 
     return chemrxiv.run(search_query, max_retrievals)
 
-if __name__ == "__main__":
-    mcp.run(
-        transport="http",
-        # host="127.0.0.1",
-        port=3333,
-        path="/nmj-mcp",
-        log_level="debug",
-        middleware=[
-            (MCPMiddleware, {}, {"api_key": API_KEY})
-        ]
-    )
+app = mcp.http_app(
+    path="/nmj-mcp",
+    middleware=[
+        (MCPMiddleware, {}, {"api_key": API_KEY})
+    ]
+)
