@@ -1,5 +1,31 @@
+# Core functionality
+arxiv==2.2.0                 # arXiv API wrapper
+tiktoken==0.9.0              # fast tokenizer 
+
+#Idea Evaluation 
+# openai>=1.0.0
+openai==1.93.0
+pandas
+numpy
+scikit-learn
+sentence-transformers
+timm==0.9.12
+
+# LangChain ecosystem
+langchain==0.3.26            
+langchain-core==0.3.68       
+langchain-community==0.3.27  
+langchain-experimental==0.3.4 
+langchain-ollama==0.3.3      
+
+# LLM & embeddings
+ollama==0.5.1                
+
+# Graph / vector storage
+neo4j==5.28.1
+
 # Meta Data Extraction
-langgraph==0.5.1
+langgraph==0.4.18
 arxiv==2.2.0
 Bio==1.8.0
 chemrxiv==0.1.2
