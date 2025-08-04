@@ -1,6 +1,3 @@
-# Meta Data Extraction
-langgraph==0.4.18
-
 # Perplexity 
 perplexitypy==1.3.1
 
