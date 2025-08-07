@@ -25,7 +25,7 @@ class PerplexityMetadataWorkflow:
         return f"""
             You are a scientific research assistant that performs two tasks.
 
-            ### TASK 1: Classify the topic to the appropriate academic archive
+            ### TASK 1: Classify the topic of {topic} to the appropriate academic archive
 
             Given a research topic or subject, classify which of the following archives it is most relevant to:
 
