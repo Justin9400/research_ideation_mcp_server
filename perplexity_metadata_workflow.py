@@ -3,7 +3,6 @@ import logging
 from dotenv import load_dotenv
 from perplexipy import PerplexityClient
 
-# --- Logging Configuration ---
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s | %(levelname)-8s | %(name)s | %(message)s",
@@ -11,7 +10,6 @@ logging.basicConfig(
 )
 logger = logging.getLogger("PerplexityMetadataWorkflow")
 
-# --- Perplexity Wrapper Class ---
 class PerplexityMetadataWorkflow:
     def __init__(self):
         load_dotenv()
@@ -22,12 +20,12 @@ class PerplexityMetadataWorkflow:
         self.client = PerplexityClient(api_key)
         logger.info("Perplexity client initialized.")
 
-    def build_query(self, archive: str, topic: str) -> str:
+    def build_query(self, topic: str) -> str:
         logger.debug(f"Building query for topic: {topic}")
         return f"""
             You are a scientific research assistant that performs two tasks.
 
-            ### TASK 1: Classify the topic to the appropriate academic archive(s)
+            ### TASK 1: Classify the topic to the appropriate academic archive
 
             Given a research topic or subject, classify which of the following archives it is most relevant to:
 
@@ -66,8 +64,8 @@ class PerplexityMetadataWorkflow:
             }
         """
 
-    def run(self, archive: str, topic: str):
-        query = self.build_query(archive, topic)
+    def run(self, topic: str):
+        query = self.build_query(topic)
         logger.info(f"Sending query for topic: {topic}")
         try:
             response = self.client.query(query)

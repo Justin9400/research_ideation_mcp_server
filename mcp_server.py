@@ -12,10 +12,10 @@ mcp = FastMCP("MCP Demo")
 workflow = PerplexityMetadataWorkflow()
 
 @mcp.tool
-async def get_metadata(archive: str, search_query: str):
+async def get_metadata(search_query: str):
     ''' Retrieve structured metadata about a research topic from a specific archive using Perplexity '''
 
-    return workflow.run(archive, search_query)
+    return workflow.run(search_query)
 
 # if __name__ == "__main__":
 #     mcp.run(
