@@ -25,27 +25,45 @@ class PerplexityMetadataWorkflow:
     def build_query(self, archive: str, topic: str) -> str:
         logger.debug(f"Building query for topic: {topic}")
         return f"""
-        Get a paper from {archive} about {topic} and return these fields about the paper:
+            You are a scientific research assistant that performs two tasks.
 
-        1. What problem is the paper addressing?
-        2. What is the proposed solution or method?
-        3. What are the remaining challenges?
-        4. What techniques are used, and what are they applied to?
-        5. What domains could this work apply to?
-        6. paper url
+            ### TASK 1: Classify the topic to the appropriate academic archive(s)
 
-        Return the result as a JSON structured like this:
+            Given a research topic or subject, classify which of the following archives it is most relevant to:
 
-        {{
-            "problem": "...",
-            "solution": "...",
-            "challenges": "...",
-            "techniques": "...",
-            "domains": "...",
-            "url": "..."
-        }}
+            - arXiv: physics, mathematics, computer science, statistics, quantitative biology, etc.
+            - PubMed: peer-reviewed biomedical and clinical research (e.g., medicine, health, pharmacology).
+            - bioRxiv: life sciences and biology preprints (e.g., genomics, neuroscience, molecular biology).
+            - ChemRxiv: chemistry preprints (e.g., organic, inorganic, physical, analytical chemistry).
 
-        Only return the JSON object. Do not include any commentary, explanation, or additional formatting.
+            Respond with the single best matching archive based on the topic.
+
+            ### TASK 2: Get a paper from the selected archive about the topic and extract structured information.
+
+            Given the selected archive and the topic, retrieve a relevant paper and extract the following fields:
+
+            1. What is the title of the paper?
+            2. What are the references of the paper?
+            3. What problem is the paper addressing? Break this down into a list of topics or phrases.
+            4. What is the proposed solution or method? Break this down into a list of solutions or methods.
+            5. What are the remaining challenges? Break this down into a list of challenges.
+            6. What techniques are used, and what are they applied to? Break this down into a list of techniques and things that they are applied to.
+            7. What domains could this work apply to? Break this down into a list of work domains that this could apply to.
+            8. The paper URL.
+
+            Return the result as a **JSON object only**, with the following structure:
+
+            ```json
+            {
+                "title": "...",
+                "references": [...],
+                "problem": [...],
+                "solution": [...],
+                "challenges": [...],
+                "techniques": [...],
+                "domains": [...],
+                "url": "..."
+            }
         """
 
     def run(self, archive: str, topic: str):
