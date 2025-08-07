@@ -51,8 +51,7 @@ class PerplexityMetadataWorkflow:
 
             Return the result as a **JSON object only**, with the following structure:
 
-            ```json
-            {
+            {{
                 "title": "...",
                 "references": [...],
                 "problem": [...],
@@ -61,7 +60,7 @@ class PerplexityMetadataWorkflow:
                 "techniques": [...],
                 "domains": [...],
                 "url": "..."
-            }
+            }}
         """
 
     def run(self, topic: str):
