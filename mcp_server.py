@@ -9,11 +9,20 @@ API_KEY = os.getenv("MCP_API_KEY")
 
 mcp = FastMCP("MCP Demo")
 
-workflow = PerplexityMetadataWorkflow()
+# workflow_perplexity = PerplexityMetadataWorkflow()
+workflow_openrouter = OpenRouterMetadataWorkflow()
+
+# @mcp.tool
+# async def get_metadata(search_query: str):
+#     ''' Retrieve structured metadata about a research topic from a specific archive using Perplexity '''
+
+#     return workflow_perplexity.run(search_query)
 
 @mcp.tool
 async def get_metadata(search_query: str):
-    ''' Retrieve structured metadata about a research topic from a specific archive using Perplexity '''
+    ''' Retrieve structured metadata about a research topic from a specific archive using OpenRouter '''
+
+    return workflow_openrouter.run(search_query)
 
     return workflow.run(search_query)
 
