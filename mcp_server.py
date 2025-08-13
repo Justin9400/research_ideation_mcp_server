@@ -25,8 +25,6 @@ async def get_metadata(search_query: str):
 
     return workflow_openrouter.run(search_query)
 
-    return workflow.run(search_query)
-
 # if __name__ == "__main__":
 #     mcp.run(
 #         transport="http",
