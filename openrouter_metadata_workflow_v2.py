@@ -1,24 +1,28 @@
 import os
 import logging
 from dotenv import load_dotenv
-from perplexipy import PerplexityClient
+import requests
 
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s | %(levelname)-8s | %(name)s | %(message)s",
     datefmt="%H:%M:%S",
 )
-logger = logging.getLogger("PerplexityMetadataWorkflow")
+logger = logging.getLogger("OpenRouterMetadataWorkflow")
 
-class PerplexityMetadataWorkflowV2:
-    def __init__(self):
+
+class OpenRouterMetadataWorkflowV2:
+    def __init__(self, model: str = "perplexity/sonar"):
         load_dotenv()
-        api_key = os.getenv("PERPLEXITY_API_KEY")
+        api_key = os.getenv("OPENROUTER_API_KEY")
         if not api_key:
-            logger.error("PERPLEXITY_API_KEY not found in environment variables.")
-            raise EnvironmentError("Missing Perplexity API key.")
-        self.client = PerplexityClient(api_key)
-        logger.info("Perplexity client initialized.")
+            logger.error("OPENROUTER_API_KEY not found in environment variables.")
+            raise EnvironmentError("Missing OpenRouter API key.")
+
+        self.api_key = api_key
+        self.model = model
+        self.api_url = "https://openrouter.ai/api/v1/chat/completions"
+        logger.info("OpenRouter client initialized.")
 
     def build_query(self, topic: str) -> str:
         logger.debug(f"Building query for topic: {topic}")
@@ -61,10 +65,37 @@ class PerplexityMetadataWorkflowV2:
     def run(self, topic: str):
         query = self.build_query(topic)
         logger.info(f"Sending query for topic: {topic}")
+
+        payload = {
+            "model": self.model,
+            "messages": [
+                {
+                    "role": "user",
+                    "content": query
+                }
+            ],
+            "temperature": 0.7,
+            "max_tokens": 2000
+        }
+
         try:
-            response = self.client.query(query)
+            response = requests.post(
+                self.api_url,
+                headers={
+                    "Authorization": f"Bearer {self.api_key}",
+                    "Content-Type": "application/json",
+                },
+                json=payload
+            )
+
+            if response.status_code != 200:
+                logger.error("API Error %d: %s", response.status_code, response.text)
+                return ""
+
+            result = response.json()
             logger.info("Query completed successfully.")
-            return response
+            return result["choices"][0]["message"]["content"]
+
         except Exception as e:
-            logger.error(f"Failed to query Perplexity: {e}")
+            logger.error(f"Failed to query OpenRouter: {e}")
             raise
