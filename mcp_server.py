@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from mcp_middleware import MCPMiddleware
 from perplexity_metadata_workflow import PerplexityMetadataWorkflow
 from openrouter_metadata_workflow import OpenRouterMetadataWorkflow
-from perplexity_metadata_workflowV2 import PerplexityMetadataWorkflowV2
+from perplexity_metadata_workflow_v2 import PerplexityMetadataWorkflowV2
 
 load_dotenv()
 API_KEY = os.getenv("MCP_API_KEY")
