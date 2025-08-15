@@ -36,7 +36,7 @@ async def get_metadata_v2(search_query: str):
     return workflow_openrouter_v2.run(search_query)
 
 @mcp.tool
-async def classify_archives_from_string(topics_str: str):
+async def get_archive_classifier(topics_str: str):
     """
     Classify topics from a comma-separated string into their best archive.
     """
