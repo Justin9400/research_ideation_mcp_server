@@ -1,6 +1,7 @@
 import os
 from fastmcp import FastMCP
 from dotenv import load_dotenv
+from archive_classifier import ArchiveClassifier
 from mcp_middleware import MCPMiddleware
 from openrouter_metadata_workflow_v2 import OpenRouterMetadataWorkflowV2
 from perplexity_metadata_workflow import PerplexityMetadataWorkflow
@@ -14,6 +15,7 @@ mcp = FastMCP("MCP Demo")
 # workflow_perplexity = PerplexityMetadataWorkflow()
 workflow_openrouter = OpenRouterMetadataWorkflow()
 workflow_openrouter_v2 = OpenRouterMetadataWorkflowV2()
+archive_classifier = ArchiveClassifier()
 
 # @mcp.tool
 # async def get_metadata(search_query: str):
@@ -32,6 +34,12 @@ async def get_metadata_v2(search_query: str):
     ''' Retrieve structured metadata about a research topic from a specific archive using OpenRouter '''
 
     return workflow_openrouter_v2.run(search_query)
+
+@mcp.tool
+async def get_metadata_v2(search_query: str):
+    ''' Retrieve structured metadata about a research topic from a specific archive using OpenRouter '''
+
+    return archive_classifier.run(search_query)
 
 # if __name__ == "__main__":
 #     mcp.run(
