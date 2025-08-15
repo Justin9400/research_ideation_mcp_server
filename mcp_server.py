@@ -36,10 +36,12 @@ async def get_metadata_v2(search_query: str):
     return workflow_openrouter_v2.run(search_query)
 
 @mcp.tool
-async def get_archive_classifier(search_query: str):
-    ''' Retrieve structured metadata about a research topic from a specific archive using OpenRouter '''
-
-    return archive_classifier.run(search_query)
+async def classify_archives_from_string(topics_str: str):
+    """
+    Classify topics from a comma-separated string into their best archive.
+    """
+    topics_list = [t.strip() for t in topics_str.split(",") if t.strip()]
+    return archive_classifier.run(topics_list)
 
 # if __name__ == "__main__":
 #     mcp.run(
