@@ -36,7 +36,7 @@ async def get_metadata_v2(search_query: str):
     return workflow_openrouter_v2.run(search_query)
 
 @mcp.tool
-async def get_metadata_v2(search_query: str):
+async def get_archive_classifier(search_query: str):
     ''' Retrieve structured metadata about a research topic from a specific archive using OpenRouter '''
 
     return archive_classifier.run(search_query)
