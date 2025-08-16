@@ -30,10 +30,10 @@ class ArchiveClassifier:
             You are a scientific research assistant. Classify each of the following topics into one of:
             arXiv, PubMed, bioRxiv, ChemRxiv.
 
-            - arXiv: physics, mathematics, computer science, statistics, quantitative biology, etc.
-            - PubMed: peer-reviewed biomedical and clinical research (e.g., medicine, health, pharmacology).
-            - bioRxiv: life sciences and biology preprints (e.g., genomics, neuroscience, molecular biology).
-            - ChemRxiv: chemistry preprints (e.g., organic, inorganic, physical, analytical chemistry).
+            - arXiv: Physics, mathematics, computer science, quantitative biology, quantitative finance, statistics, electrical engineering and systems science, and economics
+            - PubMed: Biomedicine and health, with related fields in the life sciences, behavioral sciences, chemical sciences, and bioengineering.
+            - bioRxiv: Biochemistry, Bioinformatics, Biophysics, Cancer Biology, Cell Biology, Developmental Biology, Ecology, Evolutionary Biology, Genetics, Genomics, Immunology, Microbiology, Molecular Biology, Neuroscience, Paleontology, Pathology, Pharmacology and Toxicology, Physiology, Plant Biology, Scientific Communication and Education, Synthetic Biology, Systems Biology, and Zoology.
+            - ChemRxiv: Agricultural and Food Chemistry, Analytical Chemistry, Biological and Mecidinal Chemistry, Catalysis, Chemical Education, Chemical Engineering and Industrial Chemistry, Earth Chemistry, Space Chemistry, Environmental Chemistry, Energy, Inorganic Chemistry, Materials Chemistry, Nanoscience and Nanotechnology, Organic Chemistry, Organometallic Chemistry, Physical Chemistry, Polymer Chemistry, Theoretical and Computational Chemistry.
 
             Topics:
             {topics_list_str}
